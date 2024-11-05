@@ -10,7 +10,46 @@ export default function Portfolio() {
   const renderContent = () => {
     switch (selectedSection) {
       case "media":
-        return <div>All Content Here</div>;
+        return (
+        <div className="relative carousel w-full">
+          {Poster.map((poster, index) => (
+            <div
+              className={`${
+                index === currentSlide ? "block" : "hidden"
+              } h-80 bg-newtIndigo transition-opacity duration-500`}
+              key={index}
+            >
+              <img src={poster.src} alt={`Slide ${index + 1}`} className="w-full h-full object-cover" />
+              
+            </div>
+          ))}
+
+          {/* Left Arrow */}
+          <div
+            className="absolute top-1/2 transform -translate-y-1/2 left-0 rounded-full  bg-newtIndigo bg-opacity-70 hover:bg-opacity-90 text-certainWhite p-1 cursor-pointer transition-colors duration-200"
+             
+            onClick={() =>
+              setCurrentSlide(
+                currentSlide === 0 ? Poster.length - 1 : currentSlide - 1
+              )
+            }
+          >
+            <BsChevronCompactLeft size={30} />
+          </div>
+
+          {/* Right Arrow */}
+          <div
+            className="absolute top-1/2 transform -translate-y-1/2 right-0  rounded-full p-1 bg-newtIndigo bg-opacity-70 hover:bg-opacity-90 text-certainWhite cursor-pointer transition-colors duration-200" 
+            onClick={() =>
+              setCurrentSlide(
+                currentSlide === Poster.length - 1 ? 0 : currentSlide + 1
+              )
+            }
+          >
+            <BsChevronCompactRight size={30} />
+          </div>
+        </div>
+      );
       case "gallery":
         return (
           <div className="relative carousel w-full">
@@ -53,7 +92,7 @@ export default function Portfolio() {
           </div>
         );
       case "vlc":
-        return <div>VLC Content Here</div>;
+        return <div></div>;
       default:
         return <div>All</div>;
     }
