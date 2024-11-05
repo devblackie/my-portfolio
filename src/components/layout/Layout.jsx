@@ -6,12 +6,15 @@ import Sidebar from "../sidebar/Sidebar";
 const Layout = () => {
   return (
     <>
-        <Header />
+    <div>
+    <Header />
         <div className="flex flex-1">
           <Sidebar />
           <Routers />
         </div>
         <MobileFooter />
+    </div>
+       
     </>
   );
 };
